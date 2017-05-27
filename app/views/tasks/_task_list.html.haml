@@ -8,8 +8,9 @@
         %th Note
         %th Created at
         %th Completed
+        %th Actions
     %tbody
-      - @tasks.each do |task|
+      - tasks.each do |task|
         %tr
           %td
             %strong= task.title
@@ -17,3 +18,6 @@
             %strong= task.note
           %td.text-info= task.created_at
           %td.text-success= task.completed
+          %td
+            = link_to task_path(task), remote: true, method: :delete, data: {confirm: "Are you sure delete task #{task.title}?"} do
+              %i.icon-remove
